@@ -36,6 +36,7 @@ public class ParkingSpotManager {
             ParkingSpot ps = parkingSpots.get(i);
             if (ps.getVehicle().getNumber().equals(vehicle.getNumber())) {
                 ps.removeVehicle();
+                break;
             }
         }
     }
