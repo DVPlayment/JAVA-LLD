@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
 
-public class HashMapCustom {
+public class HashMapCustom <K,V> {
 
     // impleemtn & init vars
     private int defaultSize;
@@ -29,12 +29,12 @@ public class HashMapCustom {
         this.capacity = size;
     }
 
-    public String get(int key) {
+    public V get(K key) {
         int bucketIdx = hash(key);
         LinkedListCustom node = buckets.get(bucketIdx);
         while (node != null) {
-            if (node.key == key) {
-                return node.value;
+            if (node.key.equals(key)) {
+                return (V) node.value;
             } else {
                 node = node.next;
             }
@@ -43,13 +43,14 @@ public class HashMapCustom {
         return null;
     }
 
-    public void put(int key, String value) {
+    public void put(K key, V value) {
         int bucketIdx = hash(key);
         LinkedListCustom node = buckets.get(bucketIdx);
         LinkedListCustom tailNode = null;
         while (node != null) {
-            if (node.key == key) {
+            if (node.key.equals(key)) {
                 node.value = value;
+                break;
             } else {
                 tailNode = node;
                 node = node.next;
@@ -65,8 +66,8 @@ public class HashMapCustom {
         checkLoad();
     }
 
-    private int hash(int key) {
-        return key % this.capacity;
+    private int hash(K key) {
+        return key.hashCode() % this.capacity;
     }
 
     private int getBucketSize(){

@@ -13,6 +13,8 @@ public class Main {
         map.put(6,"friend");
         map.put(7,"Elliot");
 
+        map.put("absh", 699);
+
         System.out.println(map.get(10));
         System.out.println(map.get(2));
         System.out.println(map.get(1));
@@ -20,5 +22,6 @@ public class Main {
         System.out.println(map.get(10000));
 
         System.out.println(map.capacity());
+        System.out.println(map.get("absh"));
     }
 }
